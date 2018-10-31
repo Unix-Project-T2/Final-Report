@@ -1,2 +1,8 @@
 # Final-Report
-Report about the completed project with the intent of publishing
+Final report due late November  written in Latex
+
+# Sections that need to be added
+- abstract
+- analysis
+- results/metrics
+- conclusion
