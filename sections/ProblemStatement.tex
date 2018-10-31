@@ -1,0 +1,33 @@
+\section{Problem Statement}
+\label{sec:Problem-Statement}
+
+As mentioned in section \ref{sec:Related-Work}, stress is one of the main causes for serious health concerns.
+Because of this, there are stress monitors that supervise blood volume, pulse, emotions, and 
+body temperature. Stress and anxiety can occur at any given time. In particular, during computer usage, stress levels 
+can fluctuate as a result of the content or tasks the user is seeing or doing. Using the WESAD dataset, two popular 
+classifiers, Support Vector Machines (SVM) and K-Nearest Neighbor (kNN), are used to help analyze the dataset 
+to detect when and why a test subject became stressed during the course of the experiment. 
+A comparison is then done to compare the performance of utilizing both Central Processing Units (CPUs) and 
+Graphical Processing Units (GPUs) to perfrom this task. 
+Finally, a detailed analysis of benchmarks for each test is provided to determine which method and platform 
+performed the best. Below is a table denoting each testing platorm that will be used for this experiment. 
+
+\begin{table}[h!]
+\centering
+\caption{Testing Platforms and thier Specifications}
+\label{table:testing-platforms}
+\begin{tabular}{||c c c||} 
+ \hline
+ Identifier & Platform  & Specifications  	\\ [0.5ex] 
+ \hline\hline
+ A 	& HP Spectre x360 	 & 8th Gen i7, Dedicated NNvidia GPU 	\\ 
+ B 	& Custom Desktop	 & One GPU   	\\
+ C 	& Custom Desktop	 & Three GPUs	\\
+ D 	& Custom Desktop	 & 6 GPUs	\\
+ E 	& Sabine Cluster	 & 5704 CPU Cores, 12 GPU Nodes 	 	\\ [1ex] 
+ \hline
+\end{tabular}
+\end{table}
+
+Note that in table \ref{table:testing-platforms}, platforms B through D will use the same Nvidia 1080 Ti GPUs and 
+Celeron 6th generation CPU.
