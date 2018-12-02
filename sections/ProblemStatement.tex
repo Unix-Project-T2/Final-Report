@@ -4,30 +4,30 @@
 As mentioned in section \ref{sec:Related-Work}, stress is one of the main causes for serious health concerns.
 Because of this, there are stress monitors that supervise blood volume, pulse, emotions, and 
 body temperature. Stress and anxiety can occur at any given time. In particular, during computer usage, stress levels 
-can fluctuate as a result of the content or tasks the user is seeing or doing. Using the WESAD dataset, two popular 
-classifiers, Support Vector Machines (SVM) and K-Nearest Neighbor (kNN), are used to help analyze the dataset 
+can fluctuate as a result of the content or tasks the user is seeing or doing. The WESAD dataset and the SVM model are used to help analyze the dataset 
 to detect when and why a test subject became stressed during the course of the experiment. 
-A comparison is then done to compare the performance of utilizing both Central Processing Units (CPUs) and 
-Graphical Processing Units (GPUs) to perfrom this task. 
-Finally, a detailed analysis of benchmarks for each test is provided to determine which method and platform 
-performed the best. Below is a table denoting each testing platorm that will be used for this experiment. 
+Using a 12-Fold Cross Validation approach, the goal is to determine if relative stress detection gives insight into real-time detection in male patients.
+A detailed analysis of benchmarks for each test is provided to determine which model performed the best.
 
-\begin{table}[h!]
-\centering
-\caption{Testing Platforms and thier Specifications}
-\label{table:testing-platforms}
-\begin{tabular}{||c c c||} 
- \hline
- Identifier & Platform  & Specifications  	\\ [0.5ex] 
- \hline\hline
- A 	& HP Spectre x360 	 & 8th Gen i7, Dedicated NNvidia GPU 	\\ 
- B 	& Custom Desktop	 & One GPU   	\\
- C 	& Custom Desktop	 & Three GPUs	\\
- D 	& Custom Desktop	 & 6 GPUs	\\
- E 	& Sabine Cluster	 & 5704 CPU Cores, 12 GPU Nodes 	 	\\ [1ex] 
- \hline
-\end{tabular}
-\end{table}
+\subsection{WESAD Dataset}
+\label{sec:Dataset}
 
-Note that in table \ref{table:testing-platforms}, platforms B through D will use the same Nvidia 1080 Ti GPUs and 
-Celeron 6th generation CPU.
+The WESAD dataset was composed after a stress test that was performed on to twelve males and three females. 
+To collect their data, they used both a chest- and a wrist-worn devices: a RespiBAN Professional2 and an Empatica E43. 
+The RespiBAN itself is equipped with sensors to measure accelerometer and respiratory data, and can function as a hub for up to four additional modalities. 
+Other datum were also recorded like from photoplethysograph, electrodermal activity, and temperature were recorded. 
+All signals were sampled at 700 Hz.The RespiBan was placed around the subject’s chest; The respiratory data was recorded via 
+a respiratory inductive plethysmography sensor. In order to allow the subject to move as freely as possible, the electrodermal 
+activity signal was recorded on the rectus abdominis, and the temperature sensor was placed on the sternum. All subjects wore 
+the Empatica E4 on their non- dominant hand. The Empatica E4 recorded blood volume pulse at 64Hz, temperature at 4Hz, and electrodermal activity at 4Hz.
+
+The goal of the WESAD study was to elicit three different affective states (neutral, stress, amusement) in the participants. 
+In addition, the subjects were asked to follow a guided meditation in order to de-excite them after the stress and amusement 
+conditions. After the subjects had been equipped with the sensors, a 20 minute baseline test was recorded. During the baseline, 
+the subjects were asked to sit or stand at a table. After the baseline condition results were recorded, there was an amusement 
+condition test. During the amusement condition, the subjects watched a set of eleven funny video clips. In total, the amusement 
+condition had a length of 392 seconds. The final test conducted was the Trier Social Stress Test (TSST) which consists of a public 
+speaking and a mental arithmetic task. In their version of the TSST, the study participants first had to deliver a five minute 
+speech on their personal traits in front of a three-person panel, focusing on strengths and weaknesses. After the TSST the study 
+participants were given a ten-minute rest period. At the end of the protocol, the sensors were again synchronised via a double 
+tap gesture. In total, the study had a duration of about two hours.
