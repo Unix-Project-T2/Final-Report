@@ -1,2 +1,45 @@
 \section{Analysis}
 \label{sec:analysis}
+
+Before diving into the results noted in table \ref{tab:results}, here are some 
+statistics about the males patients sampled from the WESAD dataset.
+
+\begin{itemize}
+	\item Average age: 27.5 yrs, Variance of 7.18 years
+	\item Average height: 179.67 cm, Variance of 32.06 cm
+	\item Average weight: 77 kg, Variance of 77 kg
+	\item All were right hand dominant
+	\item 16.67\% Drank coffee the day of their test
+	\item No one drank coffee an hour before taking the exam
+	\item 1 patient played sports the day of the exam
+	\item 1 patient is a smoker
+	\item No one smoked within an hour prior to the exam
+	\item Only 1 patient felt ill the day of the exam
+\end{itemize}
+\bigskip 
+$M_2$ proved to be the best trainer overall when testing against the other male patients 
+with an average accuracy of NUM\%. Below is a list of attributes about $M_2$.
+
+\begin{itemize}
+	\item Right hand dominant
+	\item Age: 27
+	\item Weight: 66 kg
+	\item Height: 129 cm
+	\item Did not drink coffee the day of the study
+	\item Did not drink coffee 1 hour before the study
+	\item Did not participate in sport activities the day of the study
+	\item Is not a smoker
+	\item Did not smoke an hour before the study
+	\item Did not feel ill the day of the study
+	\item Additional Notes
+	\begin{enumerate}
+		\item During the baseline condition, the subject was sitting in a sunny workplace
+		\item Subject provided a valence label of 7 after the stress condition, claiming that he was looking forward to the next condition and was therefore cheerful
+	\end{enumerate}
+\end{itemize}
+
+The runtime for this experiment was exceedingly high. This is a result of single threading 
+the entire experiment. A possible optimization would be to initiate 12 threads, one for 
+each fold. The threads could run concurrently without the fear of stepping over one another. 
+Since each fold simply steps through the dataset and selects their respective training and 
+testing samples, a multithreaded solution would significantly increase runtime execution. 
