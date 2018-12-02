@@ -4,6 +4,128 @@
 \subsection{Methods}
 \label{sec:methods}
 
+From the WESAD Dataset, the male patients were selected to train and test the SVM model. 
+The dataset indexes each male or female patient as $S_n$ where $n \in [2,17]$ and 
+$n \ne 12$ which yields a total of 15 patients. From $S_n$, the female patients were patients 
+$n=8,11,12$. The resulting set of male only patients, $M$, is thus 
+$$ M = \{S_n,n \ne 8,11,12,17\} $$
+and has a cardinality of 12. The $M$ set was then remapped to fit a more intuitive 
+indexing for SVM model and 12-Fold Cross Validation purposes. Table \ref{tab:remapping}
+denotes how each male patient's study index was remapped. 
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c c||} 
+\hline
+Study Index & Remapped Index  \\ [0.5ex] 
+\hline \hline
+$S_2$ & 1  \\ 
+\hline
+$S_3$ & 2  \\ 
+\hline
+$S_4$ & 3  \\ 
+\hline
+$S_5$ & 4  \\ 
+\hline
+$S_6$ & 5  \\ 
+\hline
+$S_7$ & 6  \\ 
+\hline
+$S_9$ & 7  \\ 
+\hline
+$S_{10}$ & 8  \\ 
+\hline
+$S_{13}$ & 9  \\ 
+\hline
+$S_{14}$ & 10  \\ 
+\hline
+$S_{15}$ & 11  \\ 
+\hline 
+$S_{16}$ & 12  \\ 
+\hline 
+\hline
+\end{tabular}
+\caption{Remapping WESAD indexes for implementation}
+\label{table:reampping}
+\end{table}
+
+As noted in section \ref{problem-statement}, a 12-Fold Cross Validation technique was chosen 
+to partition the WESAD dataset into training and testing data. For the purpose of 
+this experiment, each male is gaureenteed to be the training set and subsequently be 
+the testing set. For example, $M_1$ would be the fitted as the first trainer in 
+the SVM model and males $M_{2-12}$ would be tested using the fitted $M_1$ model. 
+This process repeats itself a total of 12 times, once for each male. The average 
+accuracies from each training and testing pair within each fold are recorded. 
+To ensure that the training and teting data was of the same length each time, 
+a function, \texttt{preprocessing}, was used to ensure both datum satisfied this condition.
+At the end of each fold, meaning using the example above would be $M_1$ 
+as trainer and $M_{12}$ as testing, the mean average is computed and recorded 
+along with the remapped index. Finally the 12 final average and fold pairs 
+are ranked in decsending order by average accuracy. The following pseduocode 
+denotes how the methods above were expressed. 
+
+\begin{algorithm}
+\caption{12-Fold Cross Validation using SVM}\label{12FCV}
+\begin{algorithmic}[1]
+\scriptsize
+\Require 12 male patients datum (EDA and HR)
+\For{$M_i \in {M}$}
+\State $\texttt{training} = [M_i^{EDA}, M_i^{HR}]$
+\For{$M_j \in {M}$ and $i \ne j$} \Comment{Ignore case when training set is the testing set}
+\State $\texttt{testing} = [M_j^{EDA}, M_j^{HR}]$
+\If{$len(training) \ne len(testing)$}
+\State $\texttt{training, testing} = preprocessing(training, testing)$
+\EndIf
+\State $\texttt{results} = [classify_{i,j}(training, testing)]$
+\EndFor
+\State $\texttt{averages} = (i,mean(results))$ \Comment{Append final averages after each fold}
+\EndFor
+\State $rank(averages, "descending")$
+\end{algorithmic}
+\end{algorithm}
+
 
 \subsection{Results}
 \label{sec:Results}
+
+The table below shows the ranked results from the 12-Fold Cross Validation experiment.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c c||} 
+\hline
+Male Patient & Accuracy (\%)  \\ [0.5ex] 
+\hline \hline
+$M_2$ & 1  \\ 
+\hline
+$M_3$ & 2  \\ 
+\hline
+$M_4$ & 3  \\ 
+\hline
+$M_5$ & 4  \\ 
+\hline
+$M_6$ & 5  \\ 
+\hline
+$M_7$ & 6  \\ 
+\hline
+$M_9$ & 7  \\ 
+\hline
+$M_{10}$ & 8  \\ 
+\hline
+$M_{13}$ & 9  \\ 
+\hline
+$M_{14}$ & 10  \\ 
+\hline
+$M_{15}$ & 11  \\ 
+\hline 
+$M_{16}$ & 12  \\ 
+\hline 
+\hline
+\end{tabular}
+\caption{Final Averages after 12 Folds of testing}
+\label{table:results}
+\end{table}
+
+The total computation time is 45 minutes and 23 seconds. This experiment was 
+perfromed on a MacBook Pro, Late 2013, 6th Gen i7 Intel Core Processor, 16 GB 
+RAM machine.
