@@ -43,3 +43,10 @@ the entire experiment. A possible optimization would be to initiate 12 threads, 
 each fold. The threads could run concurrently without the fear of stepping over one another. 
 Since each fold simply steps through the dataset and selects their respective training and 
 testing samples, a multithreaded solution would significantly increase runtime execution. 
+
+Another potential optimization technique would be to import the entire WESAD dataset 
+at once. For each fold, the program is reading from two files 4 times. Reading from disk 
+is a costly function that results in longer execution times. By reading only once, the number 
+of total times the program opens and reads from files and directories. Alternatively, 
+formatting the data so that it only requires a single read operation instead of traversing 
+multiple directories for the data.
