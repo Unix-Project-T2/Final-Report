@@ -10,7 +10,7 @@ $n \ne 12$ which yields a total of 15 patients. From $S_n$, the female patients 
 $n=8,11,12$. The resulting set of male only patients, $M$, is thus 
 $$ M = \{S_n,n \ne 8,11,12,17\} $$
 and has a cardinality of 12. The $M$ set was then remapped to fit a more intuitive 
-indexing for SVM model and 12-Fold Cross Validation purposes. Table \ref{tab:remapping}
+indexing for SVM model and 12-Fold Cross Validation purposes. Table \ref{table:remapping}
 denotes how each male patient's study index was remapped. 
 
 \begin{table}[h!]
@@ -46,10 +46,10 @@ $S_{16}$ & 12  \\
 \hline
 \end{tabular}
 \caption{Remapping WESAD indexes for implementation}
-\label{table:reampping}
+\label{table:remapping}
 \end{table}
 
-As noted in section \ref{problem-statement}, a 12-Fold Cross Validation technique was chosen 
+As noted in section \ref{sec:Problem-Statement}, a 12-Fold Cross Validation technique was chosen 
 to partition the WESAD dataset into training and testing data. For the purpose of 
 this experiment, each male is gaureenteed to be the training set and subsequently be 
 the testing set. For example, $M_1$ would be the fitted as the first trainer in 
